@@ -36,3 +36,17 @@ A aplicação segue um modelo de camadas onde a inteligência está na base:
 
 ### 💡 Por que esta abordagem?
 Este projeto demonstra como centralizar a lógica no banco de dados pode garantir a **integridade dos dados** independentemente da aplicação que o consome, além de proporcionar ganhos de performance em operações complexas e facilitar a manutenção de regras de negócio sem a necessidade de novos deploys da API.
+
+
+---
+
+
+> ### 🐳 Como Rodar com Docker
+> Com o Docker instalado, execute o comando abaixo na raiz do projeto:
+> ```bash
+> docker-compose up --build
+> ```
+> O ambiente será configurado automaticamente:
+> 1. O SQL Server 2022 será iniciado.
+> 2. O banco `WorkplaceDB` será criado.
+> 3. Scripts de Tabelas, Views, Procedures e Triggers serão aplicados na ordem correta de dependência.
