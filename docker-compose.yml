@@ -1,0 +1,9 @@
+services:
+  db:
+    build: ./database
+    container_name: workplace_db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=senhaForte123!
+    ports:
+      - "1533:1533"
