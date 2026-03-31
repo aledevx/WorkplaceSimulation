@@ -41,12 +41,12 @@ Este projeto demonstra como centralizar a lógica no banco de dados pode garanti
 ---
 
 
-> ### 🐳 Como Rodar com Docker
-> Com o Docker instalado, execute o comando abaixo na raiz do projeto:
-> ```bash
-> docker-compose up --build
-> ```
-> O ambiente será configurado automaticamente:
-> 1. O SQL Server 2022 será iniciado.
-> 2. O banco `WorkplaceDB` será criado.
-> 3. Scripts de Tabelas, Views, Procedures e Triggers serão aplicados na ordem correta de dependência.
+### 🐳 Como Rodar com Docker
+Com o Docker instalado, execute o comando abaixo na raiz do projeto:
+```bash
+docker-compose up --build
+```
+O ambiente será configurado automaticamente:
+1. O SQL Server 2022 será iniciado.
+2. O banco `WorkplaceDB` será criado.
+3. Scripts de Tabelas, Views, Procedures e Triggers serão aplicados na ordem correta de dependência.
