@@ -1,1 +1,31 @@
-<Solution />
+<Solution>
+  <Folder Name="/database/">
+    <File Path="database/Dockerfile" />
+    <File Path="database/entrypoint.sh" />
+  </Folder>
+  <Folder Name="/database/procedures/">
+    <File Path="database/procedures/01_pr_AlocarFuncionarioEmProjeto.sql" />
+    <File Path="database/procedures/02_pr_AtualizarSalario.sql" />
+    <File Path="database/procedures/03_pr_ContratarFuncionario.sql" />
+    <File Path="database/procedures/04_pr_DesativarFuncionario.sql" />
+    <File Path="database/procedures/05_pr_ReativarFuncionario.sql" />
+  </Folder>
+  <Folder Name="/database/tables/">
+    <File Path="database/tables/01_Departamentos.sql" />
+    <File Path="database/tables/02_Funcionarios.sql" />
+    <File Path="database/tables/03_DetalhesContrato.sql" />
+    <File Path="database/tables/04_Projetos.sql" />
+    <File Path="database/tables/05_FuncionariosProjetos.sql" />
+  </Folder>
+  <Folder Name="/database/triggers/">
+    <File Path="database/triggers/01_tr_RemoverAlocacoesAoDesativar.sql" />
+  </Folder>
+  <Folder Name="/database/views/">
+    <File Path="database/views/01_vw_RelatorioFuncionariosDetalhado.sql" />
+    <File Path="database/views/02_vw_RelatorioProjetosDetalhado.sql" />
+  </Folder>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Folder Name="/src/" />
+</Solution>
