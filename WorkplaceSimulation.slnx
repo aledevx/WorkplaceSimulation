@@ -28,4 +28,13 @@
     <File Path="docker-compose.yml" />
   </Folder>
   <Folder Name="/src/" />
+  <Folder Name="/src/Backend/">
+    <Project Path="src/Backend/WorkplaceSimulation.API/WorkplaceSimulation.API.csproj" />
+    <Project Path="src/Backend/WorkplaceSimulation.Application/WorkplaceSimulation.Application.csproj" Id="869b68e5-5274-4445-a48e-2c39c0daf712" />
+    <Project Path="src/Backend/WorkplaceSimulation.Domain/WorkplaceSimulation.Domain.csproj" Id="f8401e02-7bf5-408a-a8f1-a3293efc7c2d" />
+    <Project Path="src/Backend/WorkplaceSimulation.Infrastructure/WorkplaceSimulation.Infrastructure.csproj" Id="b30b7c87-a894-4f93-8d8e-37454183937d" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/WorkplaceSimulation.Communication/WorkplaceSimulation.Communication.csproj" Id="4944a921-9a73-46e9-97e3-e82ee45aa5e7" />
+  </Folder>
 </Solution>
