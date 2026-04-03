@@ -4,6 +4,8 @@
     <File Path="database/entrypoint.sh" />
   </Folder>
   <Folder Name="/database/procedures/">
+    <File Path="06_pr_CadastrarProjeto.sql" />
+    <File Path="07_pr_CadastrarDepartamento.sql" />
     <File Path="database/procedures/01_pr_AlocarFuncionarioEmProjeto.sql" />
     <File Path="database/procedures/02_pr_AtualizarSalario.sql" />
     <File Path="database/procedures/03_pr_ContratarFuncionario.sql" />
