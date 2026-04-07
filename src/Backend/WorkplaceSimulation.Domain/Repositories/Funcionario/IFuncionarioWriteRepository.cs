@@ -10,4 +10,6 @@ public interface IFuncionarioWriteRepository
         DateTime DataAdmissao);
     Task DesativarAsync(int FuncionarioId);
     Task ReativarAsync(int FuncionarioId);
+    Task AtualizarSalario(decimal NovoValorSalario, int FuncionarioId);
+
 }

@@ -11,6 +11,19 @@ public class FuncionarioRepository : IFuncionarioReadRepository, IFuncionarioWri
     {
         _session = session;
     }
+
+    public async Task AtualizarSalario(decimal NovoValorSalario, int FuncionarioId)
+    {
+        var parameters = new DynamicParameters();
+        parameters.Add("@NovoValorSalario", NovoValorSalario);
+        parameters.Add("@FuncionarioId", FuncionarioId);
+
+        await _session.Connection.ExecuteAsync(
+            "pr_AtualizarSalario",
+            parameters,
+            commandType: System.Data.CommandType.StoredProcedure);
+    }
+
     public async Task ContratarAsync(string Nome, string Email, string Cargo, decimal Salario, string NomeDepartamento, DateTime DataAdmissao)
     {
         var parameters = new DynamicParameters();

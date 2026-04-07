@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using WorkplaceSimulation.Domain.Repositories.Departamento;
 using WorkplaceSimulation.Domain.Repositories.Funcionario;
+using WorkplaceSimulation.Domain.Repositories.Projeto;
 using WorkplaceSimulation.Infrastructure.DataAccess;
 using WorkplaceSimulation.Infrastructure.DataAccess.Repositories;
 
@@ -30,5 +31,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDepartamentoWriteRepository, DepartamentoRepository>();
         services.AddScoped<IFuncionarioReadRepository, FuncionarioRepository>();
         services.AddScoped<IFuncionarioWriteRepository, FuncionarioRepository>();
+        services.AddScoped<IProjetoReadRepository, ProjetoRepository>();
+        services.AddScoped<IProjetoWriteRepository, ProjetoRepository>();
     }
 }

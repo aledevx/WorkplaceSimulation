@@ -1,6 +1,4 @@
-﻿using WorkplaceSimulation.Domain.Entities;
-
-namespace WorkplaceSimulation.Domain.Repositories.Funcionario;
+﻿namespace WorkplaceSimulation.Domain.Repositories.Funcionario;
 
 public interface IFuncionarioReadRepository
 {
