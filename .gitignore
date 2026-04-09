@@ -6,6 +6,13 @@
 # dotenv files
 .env
 
+# Debugging
+.vscode/
+
+# Agents
+
+.agent/
+
 # User-specific files
 *.rsuser
 *.suo
