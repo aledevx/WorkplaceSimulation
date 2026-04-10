@@ -25,42 +25,36 @@ public class ProjetoRepository : IProjetoWriteRepository, IProjetoReadRepository
 
     public async Task<IEnumerable<Projeto>> ListarRelatorioDetalhadoAsync()
     {
-        // Importante: Adicionei os IDs no SELECT para o Dapper conseguir mapear
-        const string sql = @"
-        SELECT 
-            P.Id, P.NomeProjeto, P.Prazo,                 -- Objeto Projeto
-            F.Id, F.Nome,                                 -- Objeto Funcionario
-            D.Id, D.NomeDepartamento,                     -- Objeto Departamento
-            C.FuncionarioId, C.Cargo                      -- Objeto DetalhesContrato
-        FROM Projetos P
-        INNER JOIN FuncionariosProjetos FP ON P.Id = FP.ProjetoId
-        INNER JOIN Funcionarios F ON FP.FuncionarioId = F.Id
-        INNER JOIN DetalhesContrato C ON F.Id = C.FuncionarioId
-        INNER JOIN Departamentos D ON F.DepartamentoId = D.Id";
+        const string sql = "SELECT * FROM vw_RelatorioProjetosDetalhado";
 
         var projetoDict = new Dictionary<int, Projeto>();
 
-        await _session.Connection.QueryAsync<Projeto, Funcionario, Departamento, DetalhesContrato, Projeto>(
+        // Ordem dos Tipos: <T1, T2, T3, T4, TReturn>
+        await _session.Connection.QueryAsync<Projeto, Funcionario, DetalhesContrato, Departamento, Projeto>(
             sql,
-            (projeto, funcionario, departamento, contrato) =>
+            (proj, func, contrato, depto) =>
             {
-                // Verifica se o projeto já foi criado no dicionário
-                if (!projetoDict.TryGetValue(projeto.Id, out var projetoExistente))
+                // 1. Gerencia o Agrupamento de Projetos
+                if (!projetoDict.TryGetValue(proj.Id, out var projetoExistente))
                 {
-                    projetoExistente = projeto;
+                    projetoExistente = proj;
                     projetoDict.Add(projetoExistente.Id, projetoExistente);
                 }
 
-                // Monta o funcionário com seu departamento e contrato sem listar os projetos
-                funcionario.Departamento = departamento;
-                funcionario.Contrato = contrato;
+                // 2. Monta a árvore hierárquica do Funcionário
+                if (func != null)
+                {
+                    func.Contrato = contrato;
+                    func.Departamento = depto;
 
-                // Adiciona o funcionário à lista do projeto
-                projetoExistente.Funcionarios.Add(funcionario);
+                    // 3. Adiciona o funcionário completo à lista do projeto
+                    projetoExistente.Funcionarios.Add(func);
+                }
 
                 return projetoExistente;
             },
-            splitOn: "Id, Id, FuncionarioId" // Onde a "tesoura" corta para cada objeto
+            // Onde o Dapper deve "cortar" para cada classe
+            splitOn: "FuncId, ContratoId, DeptoId"
         );
 
         return projetoDict.Values;
