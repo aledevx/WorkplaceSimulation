@@ -1,9 +1,13 @@
 CREATE VIEW vw_RelatorioFuncionariosDetalhado AS
 SELECT
+    F.Id AS FuncId,
     F.Nome,
+    D.Id AS DeptoId,
+    D.NomeDepartamento AS Departamento,
+    C.FuncionarioId AS ContratoId,
     C.Cargo,
     C.Salario,
-    D.NomeDepartamento AS Departamento,
+    P.Id AS ProjetoId,
     P.NomeProjeto,
     P.Prazo
 FROM Projetos P
