@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using WorkplaceSimulation.Domain.Entities;
 using WorkplaceSimulation.Domain.Repositories.Funcionario;
 
@@ -84,5 +84,36 @@ public class FuncionarioRepository : IFuncionarioReadRepository, IFuncionarioWri
             );
 
         return result.FirstOrDefault();
+    }
+    public async Task<IEnumerable<Funcionario>> RelatorioDetalhadoAsync()
+    {
+        const string sql = "SELECT * FROM vw_RelatorioFuncionariosDetalhado";
+
+        var funcionarioDict = new Dictionary<int, Funcionario>();
+
+        await _session.Connection.QueryAsync<Funcionario, Departamento, DetalhesContrato, Projeto, Funcionario>(
+            sql,
+            (func, depto, contrato, projeto) =>
+            {
+                if (!funcionarioDict.TryGetValue(func.Id, out var funcionarioExistente))
+                {
+                    funcionarioExistente = func;
+                    funcionarioExistente.Departamento = depto;
+                    funcionarioExistente.Contrato = contrato;
+                    funcionarioDict.Add(funcionarioExistente.Id, funcionarioExistente);
+                }
+
+                if (projeto != null)
+                {
+                    funcionarioExistente.Projetos.Add(projeto);
+                }
+
+                return funcionarioExistente;
+            },
+            // ATENÇÃO: Os nomes aqui devem ser IGUAIS aos aliases da View
+            splitOn: "DeptoId, ContratoId, ProjetoId"
+        );
+
+        return funcionarioDict.Values;
     }
 }
