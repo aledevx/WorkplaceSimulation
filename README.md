@@ -1,3 +1,4 @@
+## 🚧PROJETO EM DESENVOLVIMENTO🚧
 # 🏢 WorkplaceSimulation
 
 O **WorkplaceSimulation** é um projeto que simula o ecossistema de um ambiente de trabalho real, gerenciando o ciclo de vida de colaboradores, departamentos, contratos e alocações em projetos.
